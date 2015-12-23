@@ -16,7 +16,7 @@
 @property (nonatomic, strong) UIView *selectionIndicator;
 @property (nonatomic, strong) UIView *hairline;
 @property (nonatomic, strong) NSMutableDictionary *colors;
-@property (nonatomic, strong) NSMutableArray *counts; // of NSNumber
+@property (nonatomic, strong) NSMutableArray *counts; // of NSString
 
 @property (nonatomic, assign) CGPoint scrollOffset;
 
@@ -128,7 +128,7 @@
         CGFloat width = self.bounds.size.width / self.numberOfSegments;
         CGFloat height = self.bounds.size.height;
         CGFloat x = width*idx;
-
+        
         CGRect rect = CGRectMake(x, 0.0f, width, height);
         
         [button setFrame:rect];
@@ -261,13 +261,13 @@
     return self.items[segment];
 }
 
-- (NSNumber *)countForSegmentAtIndex:(NSUInteger)segment
+- (NSString *)countForSegmentAtIndex:(NSUInteger)segment
 {
     if (self.isImageMode) {
         return nil;
     }
     
-    return segment < self.counts.count ? self.counts[segment] : @(0);
+    return segment < self.counts.count ? self.counts[segment] : @"0";
 }
 
 - (UIColor *)titleColorForState:(UIControlState)state
@@ -449,7 +449,7 @@
         _counts = [NSMutableArray arrayWithCapacity:items.count];
         
         for (int i = 0; i < items.count; i++) {
-            [self.counts addObject:@0];
+            [self.counts addObject:@"0"];
         }
     }
     
@@ -465,7 +465,7 @@
     [super setTintColor:color];
     
     if (self.isImageMode) {
-
+        
         for (UIButton *btn in self.buttons) {
             
             UIImage *normalImage = [btn imageForState:UIControlStateNormal];
@@ -616,7 +616,7 @@
     _items = items;
 }
 
-- (void)setCount:(NSNumber *)count forSegmentAtIndex:(NSUInteger)segment
+- (void)setCount:(NSString *)count forSegmentAtIndex:(NSUInteger)segment
 {
     if (!count || !self.items || self.isImageMode) {
         return;
@@ -874,20 +874,8 @@
     NSMutableString *mutableTitle = [NSMutableString stringWithString:title];
     
     if (self.showsCount) {
-        NSNumber *count = [self countForSegmentAtIndex:segment];
-        
+        NSString *countString = [self countForSegmentAtIndex:segment];
         NSString *breakString = @"\n";
-        NSString *countString;
-        
-        if (self.numberFormatter) {
-            countString = [self.numberFormatter stringFromNumber:count];
-        }
-        else if (!self.numberFormatter && _showsGroupingSeparators) {
-            countString = [[[self class] defaultFormatter] stringFromNumber:count];
-        }
-        else {
-            countString = [NSString stringWithFormat:@"%@", count];
-        }
         
         NSString *resultString = self.inverseTitles ? [breakString stringByAppendingString:countString] : [countString stringByAppendingString:breakString];
         
