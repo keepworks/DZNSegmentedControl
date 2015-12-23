@@ -13,8 +13,8 @@
 @protocol DZNSegmentedControlDelegate;
 
 enum {
-    // segment index for no selected segment
-    DZNSegmentedControlNoSegment = -1
+  // segment index for no selected segment
+  DZNSegmentedControlNoSegment = -1
 };
 
 /**
@@ -110,12 +110,12 @@ enum {
  @param count A number to display in the segment as its count.
  @param segment An index number identifying a segment in the control. It must be a number between 0 and the number of segments (numberOfSegments) minus 1; values exceeding this upper range are pinned to it.
  */
-- (void)setCount:(NSNumber *)count forSegmentAtIndex:(NSUInteger)segment;
+- (void)setCount:(NSString *)count forSegmentAtIndex:(NSUInteger)segment;
 
 /**
  Sets the content of a segment to a given image.
  A segment can only have an image or a title; it can’t have both. There is no default image.
-
+ 
  @param image An image object to display in the segment.
  @param segment An index number identifying a segment in the control. It must be a number between 0 and the number of segments (numberOfSegments) minus 1; values exceeding this upper range are pinned to it.
  */
@@ -152,7 +152,7 @@ enum {
  @param segment An index number identifying a segment in the control. It must be a number between 0 and the number of segments (numberOfSegments) minus 1; values exceeding this upper range are pinned to it.
  @returns Returns the number (count) assigned to the receiver as content. If no count has been set, it returns 0.
  */
-- (NSNumber *)countForSegmentAtIndex:(NSUInteger)segment;
+- (NSString *)countForSegmentAtIndex:(NSUInteger)segment;
 
 /**
  Removes all segments of the receiver
