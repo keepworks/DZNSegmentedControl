@@ -179,7 +179,7 @@
         return;
     }
     
-//    [super layoutIfNeeded];
+    [super layoutIfNeeded];
 }
 
 - (CGSize)intrinsicContentSize
