@@ -112,7 +112,7 @@
 
 - (void)layoutSubviews
 {
-    [super layoutSubviews];
+//    [super layoutSubviews];
     
     [self sizeToFit];
     
