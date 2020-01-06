@@ -112,7 +112,7 @@
 
 - (void)layoutSubviews
 {
-    [super layoutSubviews];
+//    [super layoutSubviews];
     
     [self sizeToFit];
     
@@ -179,7 +179,7 @@
         return;
     }
     
-    [super layoutIfNeeded];
+//    [super layoutIfNeeded];
 }
 
 - (CGSize)intrinsicContentSize
